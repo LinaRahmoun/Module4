@@ -1,0 +1,42 @@
+
+# Module4
+import java.util.LinkedList;
+import java.util.Iterator;
+
+public class LinkedListTraversalTest {
+
+    public static void main(String[] args) {
+        int numElements1 = 50000; // Change to 500000 for the second test
+        LinkedList<Integer> linkedList = new LinkedList<>();
+
+        // Fill the LinkedList with integers
+        for (int i = 0; i < numElements1; i++) {
+            linkedList.add(i);
+        }
+
+        // Test traversal using iterator
+        long startTimeIterator = System.nanoTime();
+        Iterator<Integer> iterator = linkedList.iterator();
+        while (iterator.hasNext()) {
+            int value = iterator.next();
+        }
+        long endTimeIterator = System.nanoTime();
+        long iteratorTime = endTimeIterator - startTimeIterator;
+
+        // Test traversal using get(index)
+        long startTimeGetIndex = System.nanoTime();
+        for (int i = 0; i < numElements1; i++) {
+            int value = linkedList.get(i);
+        }
+        long endTimeGetIndex = System.nanoTime();
+        long getIndexTime = endTimeGetIndex - startTimeGetIndex;
+
+        System.out.println("Number of elements: " + numElements1);
+        System.out.println("Traversal time using iterator: " + iteratorTime + " nanoseconds");
+        System.out.println("Traversal time using get(index): " + getIndexTime + " nanoseconds");
+
+        // Provide comments and analysis
+        System.out.println("Using an iterator is generally more efficient for LinkedList traversal because it only needs to iterate through the elements once.");
+        System.out.println("The get(index) method requires traversing the list from the beginning each time, resulting in longer traversal times.");
+    }
+}
